@@ -23,15 +23,11 @@ defmodule Day1 do
       shifted_val = prev_val + shift
 
       zero_inc =
-        cond do
-          shifted_val > 0 ->
-            div(shifted_val, 100)
-
-          shifted_val == 0 ->
-            1
-
-          true ->
-            div(abs(shifted_val), 100) + if(prev_val > 0, do: 1, else: 0)
+        if shifted_val == 0 do
+          1
+        else
+          adjustment = if(shifted_val < 0 && prev_val > 0, do: 1, else: 0)
+          div(abs(shifted_val), 100) + adjustment
         end
 
       {Integer.mod(shifted_val, 100), zeroes + zero_inc}

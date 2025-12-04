@@ -24,11 +24,13 @@ defmodule Day2 do
 
   def is_invalid_2(s) do
     s_len = String.length(s)
+    graph_memes = String.graphemes(s)
 
     s_len > 1 &&
-      Enum.to_list(1..div(s_len, 2))
+      1..div(s_len, 2)
+      |> Enum.filter(&(rem(s_len, &1) == 0))
       |> Enum.any?(fn l ->
-        String.graphemes(s)
+        graph_memes
         |> Enum.chunk_every(l)
         |> MapSet.new()
         |> MapSet.size() == 1

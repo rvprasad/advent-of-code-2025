@@ -13,12 +13,11 @@ end
 def get_password2(shifts)
   shifts.reduce({50, 0}) { |(prev_val, zeroes), shift|
     shifted_val = prev_val + shift
-    if shifted_val > 0
-      zero_inc = shifted_val // 100
-    elsif shifted_val == 0
+    if shifted_val == 0
       zero_inc = 1
     else
-      zero_inc = shifted_val.abs // 100 + (prev_val > 0 ? 1 : 0)
+      adjustment = shifted_val < 0 && prev_val > 0 ? 1 : 0
+      zero_inc = shifted_val.abs // 100 + adjustment
     end
     {shifted_val % 100, zeroes + zero_inc}
   }[1]

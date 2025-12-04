@@ -50,5 +50,7 @@ fn is_invalid_2(s: String) -> bool {
     let s_chars = s.chars().collect::<Vec<char>>();
 
     s_len > 1
-        && (1..(s_len / 2 + 1)).any(|l| s_chars.chunks(l).collect::<HashSet<&[char]>>().len() == 1)
+        && (1..(s_len / 2 + 1))
+            .filter(|l| s_len % l == 0)
+            .any(|l| s_chars.chunks(l).collect::<HashSet<&[char]>>().len() == 1)
 }
