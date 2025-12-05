@@ -1,4 +1,3 @@
-use std::collections::HashSet;
 use std::env;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
@@ -34,7 +33,7 @@ fn solve_puzzle(ranges: &Vec<(String, String)>, is_invalid: &IsInvalid) -> i64 {
     ranges
         .iter()
         .flat_map(|(l, h)| {
-            (l.parse::<i64>().unwrap()..(h.parse::<i64>().unwrap() + 1))
+            (l.parse::<i64>().unwrap()..=(h.parse::<i64>().unwrap()))
                 .filter(|i| is_invalid(i.to_string()))
         })
         .sum()
@@ -47,10 +46,16 @@ fn is_invalid_1(s: String) -> bool {
 
 fn is_invalid_2(s: String) -> bool {
     let s_len = s.len();
-    let s_chars = s.chars().collect::<Vec<char>>();
+    let s_chars = s.as_bytes();
 
     s_len > 1
-        && (1..(s_len / 2 + 1))
-            .filter(|l| s_len % l == 0)
-            .any(|l| s_chars.chunks(l).collect::<HashSet<&[char]>>().len() == 1)
+        && (1..(s_len / 2 + 1)).filter(|l| s_len % l == 0).any(|l| {
+            (0..=l).all(|i| {
+                (i..s_len)
+                    .step_by(l)
+                    .map(|j| s_chars[j])
+                    .reduce(|acc, e| if acc == e { acc } else { 0 })
+                    != Some(0)
+            })
+        })
 }
