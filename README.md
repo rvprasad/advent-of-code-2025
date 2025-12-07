@@ -16,18 +16,18 @@ following commands to execute the solution.
 
 | Days | [Crystal (v1.18.2)](https://crystal-lang.org) | [Elixir (v1.19.4)](https://elixir-lang.org) | [Rust (v1.91.1)](https://rust-lang.org) | [Scala (v3.7.4)](https://scala-lang.org)
 |----|---|---|---|---
-| 1  | x | x |   |
-| 2  |   | x | x |
-| 3  |   |   | x | x
-| 4  | x |   |   | x
-| 5  | x |   | x |
-| 6  |   | x |   | x
-| 7  | x |   | x |
-| 8  |   | x |   | x
-| 9  | x |   |   | x
-| 10 | x | x |   |
-| 11 |   | x | x |
-| 12 |   |   | x | x
+| 1  | 1 | 2 |   |
+| 2  |   | 1 | 2 |
+| 3  |   |   | 1 | 2
+| 4  | 2 |   |   | 1
+| 5  | 1 |   | 2 |
+| 6  |   | 1 |   | 2
+| 7  | 2 |   | 1 |
+| 8  |   | 2 |   | 1
+| 9  | 1 |   |   | 2
+| 10 | 2 | 1 |   |
+| 11 |   | 2 | 1 |
+| 12 |   |   | 2 | 1
 
 ## Attribution
 
