@@ -1,11 +1,11 @@
-def readGrid(filename)
+def read_grid(filename)
   File.read_lines(filename).each_with_index.flat_map { |(line, r)|
     line.split("").each_with_index.reject { |(e, c)| e == "." }
       .map { |(e, c)| {r, c} }
   }.to_set
 end
 
-def getNumberOfNeighborRolls(row, col, max_row, max_col, grid)
+def get_number_of_neighbor_rolls(row, col, max_row, max_col, grid)
   (Math.max(0, row - 1)..Math.min(max_row, row + 1)).flat_map { |r|
     (Math.max(0, col - 1)..Math.min(max_col, col + 1)).map { |c|
       {r, c}
@@ -13,27 +13,27 @@ def getNumberOfNeighborRolls(row, col, max_row, max_col, grid)
   }.count { |e| !(e[0] == row && e[1] == col) && grid.includes?(e) }
 end
 
-def getRemovableRolls(grid)
+def get_removable_rolls(grid)
   max_row = grid.max_of { |e| e[0] }
   max_col = grid.max_of { |e| e[1] }
   grid.select { |(r, c)|
-    getNumberOfNeighborRolls(r, c, max_row, max_col, grid) < 4
+    get_number_of_neighbor_rolls(r, c, max_row, max_col, grid) < 4
   }.to_set
 end
 
-def solvePart1(grid)
-  getRemovableRolls(grid).size
+def solve_part_1(grid)
+  get_removable_rolls(grid).size
 end
 
-def solvePart2(grid)
-  removableRolls = getRemovableRolls(grid)
+def solve_part_2(grid)
+  removableRolls = get_removable_rolls(grid)
   if removableRolls.empty?
     0
   else
-    removableRolls.size + solvePart2(grid - removableRolls)
+    removableRolls.size + solve_part_2(grid - removableRolls)
   end
 end
 
-grid = readGrid(ARGV[0])
-puts solvePart1(grid)
-puts solvePart2(grid)
+grid = read_grid(ARGV[0])
+puts solve_part_1(grid)
+puts solve_part_2(grid)

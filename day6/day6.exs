@@ -25,7 +25,7 @@ defmodule Day6 do
       operands
       |> Enum.map(&String.trim/1)
       |> Enum.reject(&(&1 == ""))
-      |> Enum.map(&elem(Integer.parse(&1), 0))
+      |> Enum.map(&String.to_integer/1)
       |> then(&f.(&1))
     end)
     |> Enum.sum()
