@@ -25,9 +25,16 @@ following commands to execute the solution.
 | 7  | 2 |   | 1 |
 | 8  |   | 2 |   | 1
 | 9  | 1 |   |   | 2
-| 10 | 2 | 1 |   |
+| 10 | * | 1 |   |
 | 11 |   | 2 | 1 |
 | 12 |   |   | 2 | 1
+
+1. On Day 9, I found an odd bug in Crystal: `(set1 | set2) - set3` contained
+   elements from `set3` when these sets contained objects of a custom class
+   named `Location` that had two getters `x: Int64` and `y: Int64` along with
+   custom equals and hash methods defined via the `def_equals_and_hash()` macro.
+   I was not able to reproduce the same issue in a minimal setting.  So, I am
+   switching over to Ruby v3.4.7 instead of Crystal for the remaining days.
 
 ## Attribution
 
