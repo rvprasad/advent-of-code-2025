@@ -1,5 +1,5 @@
 defmodule Day10 do
-  def get_machines(filename) do
+  def read_machines(filename) do
     File.stream!(filename)
     |> Stream.map(&String.trim_trailing/1)
     |> Enum.map(fn l ->
@@ -211,6 +211,6 @@ defmodule Day10 do
 end
 
 filename = System.argv() |> List.first()
-machines = Day10.get_machines(filename)
+machines = Day10.read_machines(filename)
 machines |> Day10.solve_part_1() |> IO.puts()
 machines |> Day10.solve_part_2() |> IO.puts()

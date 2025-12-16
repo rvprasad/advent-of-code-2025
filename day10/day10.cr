@@ -7,7 +7,7 @@ class Machine
   end
 end
 
-def get_machines(filename)
+def read_machines(filename)
   File.read_lines(filename).map { |line|
     p1, *p2, p3 = line.split(" ")
     lights = p1.gsub(/[\[\]]/, "")
@@ -136,6 +136,6 @@ def solve_part_2(machines)
   }.sum
 end
 
-machines = get_machines(ARGV[0])
+machines = read_machines(ARGV[0])
 puts solve_part_1(machines)
 puts solve_part_2(machines)
